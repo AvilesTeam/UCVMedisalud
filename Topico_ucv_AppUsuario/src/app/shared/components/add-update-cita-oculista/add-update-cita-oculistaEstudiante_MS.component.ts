@@ -8,7 +8,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment-timezone';
 import { DoctorService } from 'src/app/services/doctor_services';
 
-import { DoctorService } from 'src/app/services/doctor_services';
 
 @Component({
   selector: 'app-add-update-cita-oculista-estudiante-ms',
@@ -47,7 +46,6 @@ export class AddUpdateCitaOculistaEstudianteMSComponent implements OnInit {
     { nombre: 'Sábado', valor: 'Sábado' },
   ];
 doctorSeleccionado: string;
-doctorSeleccionado: string;
 
   constructor(
     private firebaseSvc: FirebaseEDTService,
@@ -55,7 +53,6 @@ doctorSeleccionado: string;
     private route: ActivatedRoute,
     private doctorService: DoctorService,
     private router: Router,
-        private doctorService: DoctorService
 
   ) {}
 

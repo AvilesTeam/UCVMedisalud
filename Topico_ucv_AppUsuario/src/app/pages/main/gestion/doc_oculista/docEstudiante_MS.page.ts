@@ -20,16 +20,7 @@ export class DocPage implements OnInit {
          ngOnInit() {
          }
 }
-     constructor(
-      private router: Router, private route: ActivatedRoute,
-      private doctorService: DoctorService
-     ) { }
-   seleccionarDoctor(doctor: string) {
-this.doctorService.setDoctorSeleccionado('oculista', doctor);
-this.router.navigate(['horario'], { relativeTo: this.route });
-     }
-     ngOnInit() {
-     }
-    }
+     
+    
 
 

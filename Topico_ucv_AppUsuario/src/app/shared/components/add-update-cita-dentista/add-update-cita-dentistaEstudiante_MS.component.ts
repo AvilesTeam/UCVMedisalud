@@ -47,7 +47,6 @@ export class AddUpdateCitaDentistaEstudianteMSComponent implements OnInit {
     { nombre: 'Sábado', valor: 'Sábado' },
   ];
 doctorSeleccionado: string;
-doctorSeleccionado: string;
 
   constructor(
     private firebaseSvc: FirebaseEDTService,

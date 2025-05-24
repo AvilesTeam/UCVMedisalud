@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DoctorService } from 'src/app/services/doctor_services';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DoctorService } from 'src/app/services/doctor_services';
-import { Router, ActivatedRoute } from '@angular/router';
-import { DoctorService } from 'src/app/services/doctor_services';
 
 @Component({
   selector: 'app-doc-fisio',
