@@ -9,6 +9,7 @@ import * as moment from 'moment-timezone';
 import { DoctorService } from 'src/app/services/doctor_services';
 
 
+
 @Component({
   selector: 'app-add-update-cita-dentista-estudiante-ms',
   templateUrl: './add-update-cita-dentistaEstudiante_MS.component.html',
@@ -46,6 +47,7 @@ export class AddUpdateCitaDentistaEstudianteMSComponent implements OnInit {
     { nombre: 'Sábado', valor: 'Sábado' },
   ];
 doctorSeleccionado: string;
+doctorSeleccionado: string;
 
   constructor(
     private firebaseSvc: FirebaseEDTService,
@@ -53,12 +55,14 @@ doctorSeleccionado: string;
     private route: ActivatedRoute,
     private router: Router,
             private doctorService: DoctorService
-    
+    ,
+
   ) {}
 
   ngOnInit() {
     this.user = this.utilsSvc.getFromLocalStorage('user');
 this.doctorSeleccionado = this.doctorService.getDoctorSeleccionado('dentista') || '';
+    this.form.controls.doctor.setValue(this.doctorSeleccionado); // También lo carga al FormGroup    this.doctorSeleccionado = this.doctorService.getDoctorSeleccionado('dentista') || '';
     this.form.controls.doctor.setValue(this.doctorSeleccionado); // También lo carga al FormGroup
     if (this.cita) {
       this.form.setValue(this.cita);
@@ -184,19 +188,21 @@ this.doctorSeleccionado = this.doctorService.getDoctorSeleccionado('dentista') |
   }
 
   updateFechaFromDia() {
-    const selectedDay = this.form.value.day;
-    const today = new Date();
-    const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-    const todayIndex = today.getDay();
-    const targetDayIndex = days.findIndex(day => day.toLowerCase() === selectedDay.toLowerCase());
-
-    if (targetDayIndex !== -1) {
-      let nextDate = new Date(today);
-      let dayDifference = targetDayIndex - todayIndex;
-      if (dayDifference < 0) dayDifference += 7;
-      nextDate.setDate(today.getDate() + dayDifference);
-      const formattedDate = nextDate.toISOString().substring(0, 10);
-      this.form.controls.date.setValue(formattedDate);
+  const selectedDay = this.form.value.day; 
+  const today = new Date();
+  const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+  const jsDay = today.getDay(); // 0 (Domingo) - 6 (Sábado)
+  const todayIndex = jsDay === 0 ? 6 : jsDay - 1;
+  const targetDayIndex = days.findIndex(day => day.toLowerCase() === selectedDay.toLowerCase());
+  if (targetDayIndex !== -1) {
+    let nextDate = new Date(today);
+    let dayDifference = targetDayIndex - todayIndex;
+    if (dayDifference < 0) {
+      dayDifference += 7;
+    }
+    nextDate.setDate(today.getDate() + dayDifference);
+    const formattedDate = nextDate.toISOString().substring(0, 10);
+    this.form.controls.date.setValue(formattedDate); 
     }
   }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DoctorService } from 'src/app/services/doctor_services';
+import { Router, ActivatedRoute } from '@angular/router';
+import { DoctorService } from 'src/app/services/doctor_services';
 
 @Component({
   selector: 'app-doc-dentista',
@@ -18,5 +20,16 @@ export class DocPage implements OnInit {
           }
           ngOnInit() {
           }
+  
+     constructor(
+         private router: Router, private route: ActivatedRoute,
+         private doctorService: DoctorService
+        ) { }
+      seleccionarDoctor(doctor: string) {
+ this.doctorService.setDoctorSeleccionado('dentista', doctor);
+   this.router.navigate(['horario'], { relativeTo: this.route });
+        }
+        ngOnInit() {
+        }
 
 }

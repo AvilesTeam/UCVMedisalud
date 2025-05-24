@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DoctorService } from 'src/app/services/doctor_services';
+
 
 @Component({
   selector: 'app-doc-psicologia',
@@ -8,6 +9,7 @@ import { DoctorService } from 'src/app/services/doctor_services';
   styleUrls: ['./docEstudiante_MS.page.scss'],
 })
 export class DocPage implements OnInit {
+  
    constructor(
           private router: Router, private route: ActivatedRoute,
           private doctorService: DoctorService
